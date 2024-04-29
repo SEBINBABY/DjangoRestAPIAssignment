@@ -63,10 +63,10 @@ class PurchaseOrderRetrieveUpdateDestroyView(generics.RetrieveUpdateDestroyAPIVi
 
 # retrieve performance details of specific vendor
 class VendorPerformanceRetrieveView(generics.RetrieveAPIView):
-    queryset = VendorPerformance.objects.all()
+    queryset = Vendor.objects.all()
     serializer_class = VendorPerformanceSerializer
     lookup_url_kwarg = 'vendor_id'
-    lookup_field = 'vendor__id'
+    lookup_field = 'id'
     permission_classes = [IsAuthenticated]
 
 

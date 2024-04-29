@@ -17,8 +17,8 @@ class PurchaseOrderSerializer(serializers.ModelSerializer):
 
 class VendorPerformanceSerializer(serializers.ModelSerializer):
     class Meta:
-        model = VendorPerformance
-        fields = ['vendor', 'on_time_delivery_rate', 'quality_rating_avg',
+        model = Vendor
+        fields = ['name', 'on_time_delivery_rate', 'quality_rating_avg',
                   'average_response_time', 'fulfillment_rate']
 
 
