@@ -9,10 +9,20 @@ class VendorSerializer(serializers.ModelSerializer):
 
 
 class PurchaseOrderSerializer(serializers.ModelSerializer):
+    vendor_name = serializers.SerializerMethodField()
+
+    def get_vendor_name(self, obj):
+        return obj.vendor.name if obj.vendor else None
+
     class Meta:
         model = PurchaseOrder
-        fields = ['po_number', 'vendor', 'order_date',
+        fields = ['po_number', 'vendor_name', 'order_date',
                   'delivery_date', 'items', 'quantity', 'status', 'quality_rating', 'issue_date', 'acknowledgment_date']
+
+    def to_representation(self, instance):
+        # Prefetch the related vendor
+        instance = PurchaseOrder.objects.select_related('vendor').get(pk=instance.pk)
+        return super().to_representation(instance)
 
 
 class VendorPerformanceSerializer(serializers.ModelSerializer):

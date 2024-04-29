@@ -42,12 +42,6 @@ class PurchaseOrder(models.Model):
     issue_date = models.DateTimeField(auto_now_add=True)
     acknowledgment_date = models.DateTimeField(null=True, blank=True)
 
-    # def clean(self):
-    #     if self.delivery_date < self.order_date:
-    #         raise ValidationError("Delivery date must be after order date.")
-    #     else:
-    #         # Handle the case when either order_date or delivery_date is None
-    #         raise ValidationError("Both order date and delivery date must be set.")
     def __str__(self):
         return f"PO-{self.po_number} for {self.vendor.name}"
 
